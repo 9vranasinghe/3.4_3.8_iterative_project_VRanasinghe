@@ -1,0 +1,86 @@
+/********************************** NAVIGATION BAR ******************************/
+nav {
+  background-color: #222;
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: title;
+}
+
+nav li.active {
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+#main {
+  text-align:
+}
+
+navbar a.hover {
+  background-color: #fff;
+}
+
+/****************************** PAGES ********************************/
+
+body, h1, h2, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #90EE90;
+}
+
+.headings1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-weight: bold;
+}
+
+.headings2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 10px;
+}
+
+.headings2 .left {
+  text-align: left;
+}
+
+.headings2 .right {
+  text-align: right;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.headings2 p {
+  margin: 5px 0;
+}
+
+body {
+  font-family: Abril Fatface;
+  font-size: 11;
+}
+
