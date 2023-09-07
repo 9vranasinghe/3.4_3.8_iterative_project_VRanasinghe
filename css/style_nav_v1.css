@@ -1,0 +1,92 @@
+/****************** Navigation Bar and the logo *************/
+#logo {
+    background-color: rgba(0, 0, 0, 0.9);
+    text-align: left;
+    padding: 1px 0px;
+    width: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#logo h1 {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 23px;
+	color: white;
+}
+
+nav {
+    background-color: rgba(0, 0, 0, 0.9);
+    font-family: 'Orbitron', Orbitron;
+    padding: 1px 0px;
+    width: 50%;
+	margin-top: -9px;
+	margin-left: 675px;
+	align-items: center;
+	border: none;
+	position: fixed;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+	padding: 1px;
+}
+
+nav li {
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    background-color: red;
+	color: black;
+    transform: scale(1.0);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+	margin-top: none;
+}
+
+.dropdown {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: font-size 0.2s ease;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    width: 160px;
+    z-index: 1;
+	border: 2px yellow;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
