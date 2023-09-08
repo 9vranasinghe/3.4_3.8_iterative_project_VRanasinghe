@@ -1,50 +1,61 @@
-<!-- This page will hold the fourth query -->
 <html>
-<head>
-    <title>Non-Clothing</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-    <div id="main">
-        <h1>Kool Kiwiana</h1>
-        <?php
-        // Puts the navigation bar from nav.php into page_1
-        require("nav.php");
+	<head>
+		<title>Non-Clothing</title>
+		<meta charset="UTF-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<link rel="stylesheet" type="text/css" href="css/style_all_products.css">
+		<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Expletus+Sans&family=Orbitron&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	</head>
+	
+	<body>
+	
+		<?php
+    		// Puts the navigation bar from nav.php into the non-clothing page
+    		require("nav.php");
+    	?>
+		<?php
+       		 // Connecting the non-clothing page to the database
+        	require_once("Database_Assessment_mysqli.php");
         ?>
-        <?php
-        // Connecting to the database
-        require_once("Database_Assessment_mysqli.php");
-        ?>
-        <div id="container">
-            <div class="headings1">
-                <div><h2>Product</h2></div>
-                <div><h2>Category</h2></div>
-                <div><h2>Price</h2></div>
-            </div>
-            
-            <?php
-            // Creating a variable to store the query 
-            $query = "SELECT products.Product_PK, category.Category, price.Price
-FROM products
-INNER JOIN category ON products.Category_FK = category.Category_PK
-INNER JOIN price ON products.Price_FK = price.Price_PK
-WHERE category.Category != 'Clothing Item' AND price.Price <= 40
-ORDER BY category.Category ASC, price.Price ASC;
-";
-            
+		
+		<?php
+            // Creates a variable to store the SQL query
+            $query = "SELECT products.Product_PK, category.Category, price.Price, products.Image
+				FROM products
+				INNER JOIN category ON products.Category_FK = category.Category_PK
+				INNER JOIN price ON products.Price_FK = price.Price_PK
+				WHERE category.Category != 'Clothing Item' AND price.Price <= 40
+				ORDER BY category.Category ASC, price.Price ASC;";
+
+            // Runs and stores the query using the variables $con (see nav.php) and $query
             $result = mysqli_query($conn, $query);
+
+            // Runs in a 'while' loop
             while ($output = mysqli_fetch_array($result)) {
-            ?>
-                <!-- Displaying the query in the HTML -->
-                <div class="headings2">
-                    <div class="left"><p><?php echo $output['Product_PK']; ?></p></div>
-                    <div><p><?php echo $output['Category']; ?></p></div>
-                    <div><p><?php echo $output['Price']; ?></p></div>
-                </div>
-            <?php
-            }
-            ?>
+        ?>
+        <!-- PHP is above. HTML is below. Used to output the query results -->
+        <div class="product-box">
+            <img src="images/<?php echo $output['Image']; ?>" alt="Products_PK">
+            <div class="product-box-details">
+				<h3 class="product-name"><?php echo $output['Product_PK']; ?></h3>
+                <p class="description"><?php echo $output['Category']; ?></p>
+                <p class="product-price">$<?php echo $output['Price']; ?></p>
+                <button class="add-to-cart-button">Add to Cart</button>
+            </div>
         </div>
-    </div>
-</body>
-<html>
+        <?php
+            }
+            // Closes the output while loop
+        ?>
+    
+		
+		<?php
+    		// Puts the footer from footer.php into the non-clothing page
+    		require("footer.php");
+    	?>
+		
+	</body>
+	
+</html>
