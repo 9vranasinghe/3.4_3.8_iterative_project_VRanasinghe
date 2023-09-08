@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Clothing</title>
+		<title>All Products</title>
 		<meta charset="UTF-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -12,22 +12,21 @@
 	<body>
 	
 		<?php
-    		// Puts the navigation bar from nav.php into the clothing page
+    		// Puts the navigation bar from nav.php into the All Products page
     		require("nav.php");
     	?>
 		<?php
-       		 // Connecting the clothing page to the database
+       		 // Connecting the All Products page to the database
         	require_once("Database_Assessment_mysqli.php");
         ?>
 		
 		<?php
             // Creates a variable to store the SQL query
-            $query = "SELECT products.Product_PK, gender.Gender, price.Price, products.Image
-				FROM products
-				INNER JOIN gender ON products.Gender_FK = gender.Gender_PK
-				INNER JOIN price ON products.Price_FK = price.Price_PK
-				WHERE products.Category_FK = 1
-				ORDER BY gender.Gender ASC, price.Price ASC;";
+            $query = "SELECT products.Product_PK, products.Image, price.Price, description.Decription
+            FROM products
+            INNER JOIN price ON products.Price_FK = price.Price_PK
+            INNER JOIN description ON products.Description_FK = description.Description_PK
+            ORDER BY price.Price ASC";
 
             // Runs and stores the query using the variables $con (see nav.php) and $query
             $result = mysqli_query($conn, $query);
@@ -40,7 +39,7 @@
             <img src="images/<?php echo $output['Image']; ?>" alt="Products_PK">
             <div class="product-box-details">
 				<h3 class="product-name"><?php echo $output['Product_PK']; ?></h3>
-                <p class="description"><?php echo $output['Gender']; ?></p>
+                <p class="description"><?php echo $output['Decription']; ?></p>
                 <p class="product-price">$<?php echo $output['Price']; ?></p>
                 <button class="add-to-cart-button">Add to Cart</button>
             </div>
@@ -52,7 +51,7 @@
     
 		
 		<?php
-    		// Puts the footer from footer.php into the clothing page
+    		// Puts the footer from footer.php into the All Products page
     		require("footer.php");
     	?>
 		
